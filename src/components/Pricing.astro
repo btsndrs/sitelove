@@ -1,0 +1,177 @@
+---
+interface PricingPlan {
+  name: string;
+  price: string;
+  currency: string;
+  period: string;
+  parallel: string;
+  parallelLabel: string;
+  includes: string;
+  idealLabel: string;
+  ideal: string;
+  ctaLabel: string;
+  ctaHref: string;
+  featured?: boolean;
+}
+
+interface CustomCard {
+  title: string;
+  subtitle: string;
+  description: string;
+  ctaLabel: string;
+  ctaHref: string;
+}
+
+interface Props {
+  sectionLabel: string;
+  headline: string;
+  subheadline: string;
+  vatNote: string;
+  plans: PricingPlan[];
+  tab1Label?: string;
+  tab2Label?: string;
+  customCards?: CustomCard[];
+}
+
+const {
+  sectionLabel,
+  headline,
+  subheadline,
+  vatNote,
+  plans,
+  tab1Label = "Előfizetéses",
+  tab2Label = "Egyedi megrendelés",
+  customCards,
+} = Astro.props;
+
+const hasTabs = customCards && customCards.length > 0;
+---
+
+<section class="bg-brand py-20 md:py-28" id="pricing">
+  <div class="max-w-7xl mx-auto px-6 md:px-10">
+    <div class="mb-16">
+      <span class="section-label">{sectionLabel}</span>
+      <h2 class="text-3xl md:text-4xl font-heading font-bold text-brand-light mb-4 max-w-2xl">{headline}</h2>
+      <p class="text-brand-mid/60 max-w-xl leading-relaxed">{subheadline}</p>
+    </div>
+
+    {hasTabs && (
+      <div class="flex gap-0 mb-10 border-b border-white/10" id="pricing-tabs">
+        <button
+          id="tab-subscriptions"
+          class="pricing-tab active-tab font-heading font-semibold text-sm tracking-wide uppercase px-6 py-3 transition-all duration-200"
+          data-target="panel-subscriptions"
+        >
+          {tab1Label}
+        </button>
+        <button
+          id="tab-custom"
+          class="pricing-tab font-heading font-semibold text-sm tracking-wide uppercase px-6 py-3 transition-all duration-200"
+          data-target="panel-custom"
+        >
+          {tab2Label}
+        </button>
+      </div>
+    )}
+
+    {/* Tab 1 — Subscription plans */}
+    <div id="panel-subscriptions" class="pricing-panel">
+      <div class="grid md:grid-cols-3 gap-6 mb-6">
+        {plans.map((plan) => (
+          <div class={`relative flex flex-col p-8 border transition-all duration-300 ${plan.featured ? 'border-brand-accent bg-white/5' : 'border-white/10 hover:border-white/20'}`}>
+            {plan.featured && (
+              <div class="absolute -top-3 left-8">
+                <span class="bg-brand-accent text-white text-xs font-heading font-semibold tracking-widest uppercase px-3 py-1">Popular</span>
+              </div>
+            )}
+            <div class="mb-8">
+              <h3 class="font-heading font-bold text-brand-light text-lg mb-6">{plan.name}</h3>
+              <div class="flex items-end gap-1 mb-1">
+                <span class="font-heading font-bold text-3xl text-brand-light">{plan.price}</span>
+                <span class="text-brand-mid/50 text-sm mb-1">{plan.currency}/{plan.period}</span>
+              </div>
+              <p class="text-brand-mid/40 text-xs mt-2">{plan.parallel} <strong class="text-brand-mid/60">{plan.parallelLabel}</strong></p>
+            </div>
+
+            <div class="flex-1 mb-8">
+              <p class="text-brand-mid/70 text-sm mb-4 leading-relaxed">{plan.includes}</p>
+              <p class="text-xs text-brand-mid/40">
+                <span class="text-brand-accent/60">{plan.idealLabel}</span> {plan.ideal}
+              </p>
+            </div>
+
+            <a
+              href={plan.ctaHref}
+              class={`block text-center font-heading font-semibold text-sm tracking-wide uppercase py-3 px-6 transition-all duration-200 ${plan.featured ? 'bg-brand-accent text-white hover:bg-brand-accent/90' : 'border border-white/30 text-brand-light hover:bg-white/10'}`}
+            >
+              {plan.ctaLabel}
+            </a>
+          </div>
+        ))}
+      </div>
+      <p class="text-brand-mid/30 text-xs">{vatNote}</p>
+    </div>
+
+    {/* Tab 2 — Custom order cards */}
+    {hasTabs && (
+      <div id="panel-custom" class="pricing-panel hidden">
+        <div class="grid md:grid-cols-2 gap-6">
+          {customCards!.map((card) => (
+            <div class="relative flex flex-col p-8 border border-white/10 hover:border-white/20 transition-all duration-300">
+              <div class="mb-8">
+                <h3 class="font-heading font-bold text-brand-light text-lg mb-3">{card.title}</h3>
+                <p class="text-brand-accent/80 text-sm font-heading font-semibold mb-4">{card.subtitle}</p>
+                <p class="text-brand-mid/70 text-sm leading-relaxed">{card.description}</p>
+              </div>
+              <div class="mt-auto">
+                <a
+                  href={card.ctaHref}
+                  class="block text-center font-heading font-semibold text-sm tracking-wide uppercase py-3 px-6 border border-white/30 text-brand-light hover:bg-white/10 transition-all duration-200"
+                >
+                  {card.ctaLabel}
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .pricing-tab {
+    color: rgba(255, 255, 255, 0.4);
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+  }
+  .pricing-tab:hover {
+    color: rgba(255, 255, 255, 0.7);
+  }
+  .pricing-tab.active-tab {
+    color: #ffffff;
+    border-bottom-color: #c8a96e;
+  }
+  .pricing-panel.hidden {
+    display: none;
+  }
+</style>
+
+<script>
+  const tabs = document.querySelectorAll<HTMLButtonElement>('.pricing-tab');
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      tabs.forEach((t) => t.classList.remove('active-tab'));
+      tab.classList.add('active-tab');
+
+      document.querySelectorAll<HTMLElement>('.pricing-panel').forEach((panel) => {
+        panel.classList.add('hidden');
+      });
+
+      const target = tab.dataset.target;
+      if (target) {
+        document.getElementById(target)?.classList.remove('hidden');
+      }
+    });
+  });
+</script>

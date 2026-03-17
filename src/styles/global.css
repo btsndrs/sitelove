@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply font-body text-brand bg-brand-light antialiased;
+  }
+  h1, h2, h3, h4 {
+    @apply font-heading;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-block bg-brand-accent text-white font-heading font-semibold px-7 py-3.5 text-sm tracking-wide uppercase transition-all duration-200 hover:bg-opacity-90 hover:shadow-lg;
+  }
+  .btn-outline {
+    @apply inline-block border border-brand text-brand font-heading font-semibold px-7 py-3.5 text-sm tracking-wide uppercase transition-all duration-200 hover:bg-brand hover:text-brand-light;
+  }
+  .section-label {
+    @apply text-xs font-heading font-semibold tracking-[0.2em] uppercase text-brand-accent mb-4 block;
+  }
+  .checklist-item {
+    @apply flex items-start gap-3 text-sm text-brand/80 leading-relaxed;
+  }
+}

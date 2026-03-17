@@ -1,0 +1,48 @@
+---
+interface Step {
+  number: string;
+  title: string;
+  description: string;
+}
+interface Props {
+  sectionLabel: string;
+  headline: string;
+  subheadline: string;
+  steps: Step[];
+}
+const { sectionLabel, headline, subheadline, steps } = Astro.props;
+
+const stepIcons = [
+  "https://cdn.prod.website-files.com/6267babc3063512be3e7eb0d/69a8415cbf57f5e4eec1a8a6_9e7e84860cbfb2de086fb1920c28817a_001-04.png",
+  "https://cdn.prod.website-files.com/6267babc3063512be3e7eb0d/69a8415cc6ab92ee124446c6_c29787f1907d3418e156556ae5e9f815_001-05.png",
+  "https://cdn.prod.website-files.com/6267babc3063512be3e7eb0d/69a8415cdeaf3cc80a50c0a8_af871a2966fccbe72635429dfee98184_001-06.png",
+];
+---
+
+<section class="bg-brand-light py-20 md:py-28">
+  <div class="max-w-7xl mx-auto px-6 md:px-10">
+    <div class="mb-16">
+      <span class="section-label">{sectionLabel}</span>
+      <h2 class="text-3xl md:text-4xl font-heading font-bold text-brand mb-4 max-w-2xl">{headline}</h2>
+      <p class="text-brand/60 max-w-xl leading-relaxed">{subheadline}</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-0 relative">
+      <!-- connector line -->
+      <div class="hidden md:block absolute top-8 left-[16.6%] right-[16.6%] h-px bg-brand-accent/20 z-0"></div>
+
+      {steps.map((step, i) => (
+        <div class="relative z-10 flex flex-col items-start md:items-center md:text-center px-0 md:px-8 mb-12 md:mb-0">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-16 h-16 bg-brand-accent/10 border border-brand-accent/30 flex items-center justify-center flex-shrink-0">
+              <img src={stepIcons[i]} alt={step.title} class="w-9 h-9 object-contain" />
+            </div>
+          </div>
+          <div class="font-heading text-xs text-brand-accent/60 tracking-[0.15em] uppercase mb-2">{step.number}</div>
+          <h3 class="font-heading font-bold text-brand text-lg mb-3">{step.title}</h3>
+          <p class="text-brand/60 text-sm leading-relaxed">{step.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

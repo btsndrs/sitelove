@@ -1,0 +1,200 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import PainPoints from '../../components/PainPoints.astro';
+import HowItWorks from '../../components/HowItWorks.astro';
+import Services from '../../components/Services.astro';
+import Pricing from '../../components/Pricing.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import About from '../../components/About.astro';
+import FAQ from '../../components/FAQ.astro';
+import ClosingCTA from '../../components/ClosingCTA.astro';
+---
+
+<BaseLayout title="Sitelove — Qvarta" lang="en">
+  <Hero
+    headline="Find out how a plot can be developed —<br/><em class='not-italic text-brand-accent'>before you commit</em>"
+    subheadline="Feasibility studies and concept designs for real estate developers. Predictable monthly fee. 10 business day delivery. No long-term contracts."
+    ctaPrimary="Book a 30-minute call"
+    ctaSecondary="Download a sample study"
+    ctaPrimaryHref="#contact"
+    ctaSecondaryHref="#download"
+  />
+
+  <PainPoints
+    intro="Most projects stall on a spreadsheet. Yours doesn't have to."
+    points={[
+      {
+        icon: "",
+        title: "Too expensive",
+        description: "Project-based pricing means you pay for things you never end up using."
+      },
+      {
+        icon: "",
+        title: "Too vague",
+        description: "You need numbers and layouts that move things forward — not ambiguous recommendations."
+      },
+      {
+        icon: "",
+        title: "Too slow",
+        description: "The full design process takes too long. In the meantime, good opportunities can slip away if you can't react quickly."
+      }
+    ]}
+    transition="There is a better way to manage the property acquisition process."
+  />
+
+  <HowItWorks
+    sectionLabel="The process"
+    headline="Three steps to a decision-ready plan"
+    subheadline="No lengthy briefing process, no complex questionnaires. Simple, fast, and effective."
+    steps={[
+      {
+        number: "Step 1",
+        title: "Submit the plot",
+        description: "Provide the address, cadastral number, and intended use (residential, mixed-use, commercial). That's it."
+      },
+      {
+        number: "Step 2",
+        title: "We analyse and design",
+        description: "We check regulations, run the calculations, and develop 2–3 conceptual layout alternatives with a clear picture of what's possible."
+      },
+      {
+        number: "Step 3",
+        title: "You decide with confidence",
+        description: "You receive a polished PDF report — ready to share with investors, your bank, or to inform your own next step."
+      }
+    ]}
+  />
+
+  <Services
+    sectionLabel="What you get"
+    headline="Submit a plot and receive a complete study within 10 business days"
+    subheadline="Pause or cancel at any time."
+    cards={[
+      {
+        title: "Feasibility Study",
+        deliveryTime: "7 business days",
+        items: [
+          "National and local zoning regulation review",
+          "Building site and restrictions analysis",
+          "Building parameters: coverage ratio, floor area, cornice height, green surface calculations",
+          "Site analysis",
+          "Parking requirements"
+        ]
+      },
+      {
+        title: "Concept Design",
+        deliveryTime: "10 business days",
+        items: [
+          "2–3 massing and floor plan alternatives",
+          "Schematic floor plans per level",
+          "Representative sections and elevations",
+          "Floor area breakdown by function",
+          "2–3 exterior 3D renders or massing visualisations",
+          "Excel summary sheet with key data",
+          "Presentation-ready PDF for investor meetings or preliminary authority consultations"
+        ]
+      }
+    ]}
+  />
+
+  <Pricing
+    sectionLabel="Plans & pricing"
+    headline="Fixed price. No surprises."
+    subheadline="Choose the plan that matches your acquisition pace. Pause anytime, no cancellation fee."
+    vatNote="All prices are exclusive of VAT."
+    plans={[
+      {
+        name: "Basic",
+        price: "350,000",
+        currency: "HUF",
+        period: "mo",
+        parallel: "Concurrent projects:",
+        parallelLabel: "1",
+        includes: "Feasibility Study",
+        idealLabel: "Ideal for:",
+        ideal: "low-volume cases",
+        ctaLabel: "Get started",
+        ctaHref: "#contact"
+      },
+      {
+        name: "Studio",
+        price: "640,000",
+        currency: "HUF",
+        period: "mo",
+        parallel: "Concurrent projects:",
+        parallelLabel: "2",
+        includes: "Feasibility Study + Concept Design",
+        idealLabel: "Ideal for:",
+        ideal: "1–2 active acquisitions per month",
+        ctaLabel: "Get started",
+        ctaHref: "#contact",
+        featured: true
+      },
+      {
+        name: "Premium",
+        price: "1,250,000",
+        currency: "HUF",
+        period: "mo",
+        parallel: "Concurrent projects:",
+        parallelLabel: "3",
+        includes: "Feasibility Study + Concept Design",
+        idealLabel: "Ideal for:",
+        ideal: "active real estate developers",
+        ctaLabel: "Get started",
+        ctaHref: "#contact"
+      }
+    ]}
+  />
+
+  <LeadForm
+    sectionLabel="See what you get"
+    headline="Download a real sample study"
+    description="Download the complete materials from a real (anonymised) feasibility and concept design package for a Budapest residential development plot. 14 pages. Exactly the format we deliver for every submission."
+    namePlaceholder="Your name"
+    emailPlaceholder="Email address"
+    ctaLabel="Download"
+    successMessage="Thank you! Your submission has been received. We'll be in touch shortly."
+    errorMessage="Something went wrong. Please try again."
+  />
+
+  <About
+    sectionLabel="About us"
+    headline="Expertise, precision"
+    description="The reliability of this service is backed by Qvarta Architecture. We are a Budapest-based architecture and general design studio with many years of experience. We have guided residential, public, and commercial projects from concept through to completion. We created this subscription service because we repeatedly saw developers losing time and money in the early stages — and we know we can help with exactly that."
+  />
+
+  <FAQ
+    sectionLabel="FAQ"
+    headline="Frequently asked questions"
+    items={[
+      {
+        question: "What information do I need to provide to get started?",
+        answer: "Just the address or cadastral number, the intended use, and any known constraints. If you have a land registry map extract or geodetic survey, that speeds things up. We handle everything else."
+      },
+      {
+        question: "Do you also produce permit or construction drawings?",
+        answer: "This service covers only the pre-design advisory phase. However, we are happy to collaborate on further design phases on a case-by-case basis."
+      },
+      {
+        question: "What if my plot is outside Budapest?",
+        answer: "We cover the entire Hungarian market."
+      },
+      {
+        question: "Can I cancel at any time?",
+        answer: "Yes. Rolling monthly contract. Cancel or pause with 7 days' notice, no reason required."
+      },
+      {
+        question: "Do you work with existing buildings as well?",
+        answer: "Yes. In that case, you'll need to provide survey drawings at some level of detail."
+      }
+    ]}
+  />
+
+  <ClosingCTA
+    headline="Your next successful development starts here."
+    description="Book a free 30-minute demo — we'll walk you through the service with a real example and answer all your questions. No commitment."
+    ctaLabel="Book a 30-minute call"
+    ctaHref="#contact"
+  />
+</BaseLayout>

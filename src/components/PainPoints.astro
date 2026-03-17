@@ -1,0 +1,37 @@
+---
+interface PainPoint {
+  icon: string;
+  title: string;
+  description: string;
+}
+interface Props {
+  intro: string;
+  points: PainPoint[];
+  transition: string;
+}
+const { intro, points, transition } = Astro.props;
+
+const icons = [
+  "https://cdn.prod.website-files.com/6267babc3063512be3e7eb0d/69a8415c4dc512e4de9f9e4b_e00681d9e2eecf2e3abe71e8ef607b77_001-02.png",
+  "https://cdn.prod.website-files.com/6267babc3063512be3e7eb0d/69a8415c667f4d026f48bd0d_7e64a1d14c9d606f7dd42f074cb88c17_001-03.png",
+  "https://cdn.prod.website-files.com/6267babc3063512be3e7eb0d/69a8415c3948045ab7aa9631_d00735b374b2021bd40dc53188880a58_001-01.png",
+];
+---
+
+<section class="bg-brand text-brand-light py-20 md:py-28">
+  <div class="max-w-7xl mx-auto px-6 md:px-10">
+    <p class="text-lg md:text-xl font-heading font-semibold text-brand-mid mb-16 max-w-2xl">{intro}</p>
+
+    <div class="grid md:grid-cols-3 gap-8 mb-16">
+      {points.map((point, i) => (
+        <div class="border border-white/10 p-8 hover:border-brand-accent/40 transition-colors duration-300">
+          <img src={icons[i]} alt={point.title} class="w-14 h-14 object-contain mb-6 opacity-80" />
+          <h3 class="font-heading font-bold text-brand-accent text-lg mb-3">{point.title}</h3>
+          <p class="text-brand-mid/70 text-sm leading-relaxed">{point.description}</p>
+        </div>
+      ))}
+    </div>
+
+    <p class="text-xl md:text-2xl font-heading font-semibold text-brand-light border-l-4 border-brand-accent pl-6">{transition}</p>
+  </div>
+</section>

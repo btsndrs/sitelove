@@ -1,0 +1,51 @@
+---
+interface FaqItem {
+  question: string;
+  answer: string;
+}
+interface Props {
+  sectionLabel: string;
+  headline: string;
+  items: FaqItem[];
+}
+const { sectionLabel, headline, items } = Astro.props;
+---
+
+<section class="bg-brand-light py-20 md:py-28" id="faq">
+  <div class="max-w-7xl mx-auto px-6 md:px-10">
+    <div class="mb-16">
+      <span class="section-label">{sectionLabel}</span>
+      <h2 class="text-3xl md:text-4xl font-heading font-bold text-brand">{headline}</h2>
+    </div>
+
+    <div class="max-w-3xl space-y-0 divide-y divide-brand/10" id="faq-list">
+      {items.map((item, i) => (
+        <div class="faq-item py-6 cursor-pointer" data-index={i}>
+          <div class="flex items-start justify-between gap-4">
+            <h3 class="font-heading font-semibold text-brand text-base leading-snug">{item.question}</h3>
+            <span class="faq-icon text-brand-accent text-xl font-light mt-0.5 flex-shrink-0 transition-transform duration-200">+</span>
+          </div>
+          <div class="faq-answer hidden mt-4 text-brand/60 text-sm leading-relaxed pr-8">{item.answer}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('.faq-item').forEach((item) => {
+    item.addEventListener('click', () => {
+      const answer = item.querySelector('.faq-answer');
+      const icon = item.querySelector('.faq-icon');
+      const isOpen = !answer?.classList.contains('hidden');
+      // Close all
+      document.querySelectorAll('.faq-answer').forEach(a => a.classList.add('hidden'));
+      document.querySelectorAll('.faq-icon').forEach(ic => { ic.textContent = '+'; (ic as HTMLElement).style.transform = ''; });
+      // Toggle current
+      if (!isOpen) {
+        answer?.classList.remove('hidden');
+        if (icon) { icon.textContent = '−'; (icon as HTMLElement).style.transform = 'rotate(0deg)'; }
+      }
+    });
+  });
+</script>

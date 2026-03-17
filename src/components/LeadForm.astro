@@ -1,0 +1,89 @@
+---
+interface Props {
+  sectionLabel: string;
+  headline: string;
+  description: string;
+  namePlaceholder: string;
+  emailPlaceholder: string;
+  ctaLabel: string;
+  successMessage: string;
+  errorMessage: string;
+}
+const { sectionLabel, headline, description, namePlaceholder, emailPlaceholder, ctaLabel, successMessage, errorMessage } = Astro.props;
+---
+
+<section class="bg-brand-light py-20 md:py-28" id="download">
+  <div class="max-w-7xl mx-auto px-6 md:px-10">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <!-- Left: text + form -->
+      <div>
+        <span class="section-label">{sectionLabel}</span>
+        <h2 class="text-3xl md:text-4xl font-heading font-bold text-brand mb-5 max-w-lg">{headline}</h2>
+        <p class="text-brand/60 leading-relaxed mb-10 max-w-md">{description}</p>
+
+        <form 
+          name="sample-download"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          class="space-y-4 max-w-md"
+          id="download-form"
+        >
+          <input type="hidden" name="form-name" value="sample-download" />
+          <p class="hidden"><input name="bot-field" /></p>
+
+          <input 
+            type="text"
+            name="name"
+            placeholder={namePlaceholder}
+            required
+            class="w-full border border-brand/20 bg-white px-4 py-3 text-sm font-body text-brand placeholder:text-brand/30 focus:outline-none focus:border-brand-accent transition-colors"
+          />
+          <input 
+            type="email"
+            name="email"
+            placeholder={emailPlaceholder}
+            required
+            class="w-full border border-brand/20 bg-white px-4 py-3 text-sm font-body text-brand placeholder:text-brand/30 focus:outline-none focus:border-brand-accent transition-colors"
+          />
+          <button type="submit" class="btn-primary w-full">{ctaLabel}</button>
+        </form>
+
+        <!-- Success / error messages (shown via JS) -->
+        <div id="form-success" class="hidden mt-6 p-4 bg-green-50 border border-green-200 text-green-800 text-sm">{successMessage}</div>
+        <div id="form-error" class="hidden mt-6 p-4 bg-red-50 border border-red-200 text-red-800 text-sm">{errorMessage}</div>
+      </div>
+
+      <!-- Right: mockup image -->
+      <div class="relative flex justify-center">
+        <div class="absolute inset-0 bg-brand-accent/5 -skew-x-2 scale-105"></div>
+        <img 
+          src="/images/mockup01.jpg"
+          alt="Sample study preview"
+          class="relative w-full max-w-md object-contain drop-shadow-2xl"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById('download-form') as HTMLFormElement;
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      try {
+        const res = await fetch('/', { method: 'POST', body: data });
+        if (res.ok) {
+          form.style.display = 'none';
+          document.getElementById('form-success')?.classList.remove('hidden');
+        } else {
+          document.getElementById('form-error')?.classList.remove('hidden');
+        }
+      } catch {
+        document.getElementById('form-error')?.classList.remove('hidden');
+      }
+    });
+  }
+</script>

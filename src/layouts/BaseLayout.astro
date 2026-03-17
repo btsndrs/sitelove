@@ -1,0 +1,32 @@
+---
+import '../styles/global.css';
+interface Props {
+  title: string;
+  lang: 'hu' | 'en';
+}
+const { title, lang } = Astro.props;
+const otherLang = lang === 'hu' ? 'en' : 'hu';
+const otherHref = lang === 'hu' ? '/en' : '/';
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <link rel="icon" type="image/svg+xml" href="https://cdn.prod.website-files.com/6267babc3063512be3e7eb0d/6267bd9732d7d7a2c31bbe11_Qvarta%20logo.svg" />
+  </head>
+  <body>
+    <!-- Language switcher -->
+    <div class="fixed top-4 right-6 z-50">
+      <a 
+        href={otherHref}
+        class="font-heading text-xs font-semibold tracking-[0.15em] uppercase bg-white/90 backdrop-blur border border-brand/10 px-3 py-1.5 hover:bg-brand hover:text-brand-light transition-all duration-200 shadow-sm"
+      >
+        {otherLang === 'en' ? 'EN' : 'HU'}
+      </a>
+    </div>
+
+    <slot />
+  </body>
+</html>

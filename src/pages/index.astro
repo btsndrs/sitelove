@@ -1,0 +1,218 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import PainPoints from '../components/PainPoints.astro';
+import HowItWorks from '../components/HowItWorks.astro';
+import Services from '../components/Services.astro';
+import Pricing from '../components/Pricing.astro';
+import LeadForm from '../components/LeadForm.astro';
+import About from '../components/About.astro';
+import FAQ from '../components/FAQ.astro';
+import ClosingCTA from '../components/ClosingCTA.astro';
+---
+
+<BaseLayout title="Sitelove — Qvarta" lang="hu">
+  <Hero
+    headline="Tudd meg, hogyan hasznosítható egy telek —<br/><em class='not-italic text-brand-accent'>mielőtt elköteleződsz</em>"
+    subheadline="Megvalósíthatósági tanulmányok és koncepciótervek ingatlanfejlesztőknek. Kiszámítható havi díj. 10 munkanapos szállítás. Hosszas szerződések nélkül."
+    ctaPrimary="Foglalj 30 perces hívást"
+    ctaSecondary="Tölts le egy minta tanulmányt"
+    ctaPrimaryHref="#contact"
+    ctaSecondaryHref="#download"
+  />
+
+  <PainPoints
+    intro="A legtöbb projekt táblázat formában ragad. A tiéd ne legyen ilyen!"
+    points={[
+      {
+        icon: "",
+        title: "Túl drága",
+        description: "Projekt alapú díjazás azt jelenti, hogy olyanért is fizetsz, amit nem használsz fel."
+      },
+      {
+        icon: "",
+        title: "Nem egyértelmű",
+        description: "Számokra és elrendezésre van szükséged, amely előrevisz — nem homályos javaslatokra."
+      },
+      {
+        icon: "",
+        title: "Túl lassú",
+        description: "A teljes tervezési folyamat túl lassú. Ezalatt jó lehetőségektől eshetsz el, ha nem reagálsz gyorsan."
+      }
+    ]}
+    transition="Van egy jobb módja az ingatlan akvizíciós folyamat kezelésének."
+  />
+
+  <HowItWorks
+    sectionLabel="A folyamat"
+    headline="Három lépés a döntésképes tervhez"
+    subheadline="Nincs hosszadalmas megbízási folyamat, nincs komplex tájékoztató. Egyszerű, gyors, eredményes."
+    steps={[
+      {
+        number: "1. lépés",
+        title: "Küldd be a telket",
+        description: "Add meg a címet, a helyrajzi számot és a fejlesztési célt (lakó, vegyes rendeltetés, kereskedelmi). Ennyi."
+      },
+      {
+        number: "2. lépés",
+        title: "Mi elemzünk és tervezünk",
+        description: "Ellenőrizzük a szabályozást, elvégezzük a számításokat, és kidolgozunk 2–3 koncepcionális elrendezési alternatívát."
+      },
+      {
+        number: "3. lépés",
+        title: "Te magabiztosan döntesz",
+        description: "Megkapsz egy igényes PDF riportot — készen arra, hogy befektetőidnek, bankodnak, vagy saját döntésedhez felhasználd."
+      }
+    ]}
+  />
+
+  <Services
+    sectionLabel="Mit kapsz"
+    headline="Küldj be egy telket, 10 munkanapon belül visszaküldünk egy teljes tanulmányt"
+    subheadline="Szüneteltetés és lemondás bármikor lehetséges."
+    cards={[
+      {
+        title: "Megvalósíthatósági tanulmány",
+        deliveryTime: "7 munkanap",
+        items: [
+          "Országos és helyi szabályozás vizsgálat",
+          "Építési hely és korlátozások elemzése",
+          "Építési paraméterek: beépíthetőség, szintterület, párkánymagasság, zöldfelület kiszámítása",
+          "Helyszínelemzés",
+          "Parkolási előírások"
+        ]
+      },
+      {
+        title: "Koncepcióterv",
+        deliveryTime: "10 munkanap",
+        items: [
+          "2–3 tömegalakítási és alaprajzi alternatíva",
+          "Vázlatos szintenkénti alaprajzok",
+          "Jellemző metszetek és homlokzatok",
+          "Szintterület-megoszlás funkciók szerint",
+          "2–3 külső 3D render vagy tömegalakítási vizualizáció",
+          "Excel táblázat összefoglaló adatokkal",
+          "Prezentációkész PDF befektetői tárgyalásokhoz"
+        ]
+      }
+    ]}
+  />
+
+  <Pricing
+    sectionLabel="Csomagok és árak"
+    headline="Fix ár. Meglepetések nélkül."
+    subheadline="Válaszd a telekszerzési ütemedhez illő csomagot. Szüneteltetés bármikor, lemondási díj nélkül."
+    vatNote="A megadott árak nettó értékek."
+    tab1Label="Előfizetéses"
+    tab2Label="Egyedi megrendelés"
+    plans={[
+      {
+        name: "Alap csomag",
+        price: "350 000",
+        currency: "Ft",
+        period: "hó",
+        parallel: "Párhuzamos projektek:",
+        parallelLabel: "1 db",
+        includes: "Megvalósíthatósági tanulmány",
+        idealLabel: "Ideális:",
+        ideal: "kisforgalmú esetekre",
+        ctaLabel: "Foglalj 30 perces hívást",
+        ctaHref: "#contact"
+      },
+      {
+        name: "Stúdió csomag",
+        price: "640 000",
+        currency: "Ft",
+        period: "hó",
+        parallel: "Párhuzamos projektek:",
+        parallelLabel: "2 db",
+        includes: "Megvalósíthatósági tanulmány és Koncepcióterv",
+        idealLabel: "Ideális:",
+        ideal: "1–2 aktív akvizíció / hó",
+        ctaLabel: "Foglalj 30 perces hívást",
+        ctaHref: "#contact",
+        featured: true
+      },
+      {
+        name: "Prémium csomag",
+        price: "1 250 000",
+        currency: "Ft",
+        period: "hó",
+        parallel: "Párhuzamos projektek:",
+        parallelLabel: "3 db",
+        includes: "Megvalósíthatósági tanulmány és Koncepcióterv",
+        idealLabel: "Ideális:",
+        ideal: "aktív ingatlanfejlesztőknek",
+        ctaLabel: "Foglalj 30 perces hívást",
+        ctaHref: "#contact"
+      }
+    ]}
+    customCards={[
+      {
+        title: "Újépítésű épület",
+        subtitle: "Egyedi ajánlat alapján",
+        description: "Megvalósíthatósági tanulmány és koncepcióterv",
+        ctaLabel: "Ajánlatot kérek",
+        ctaHref: "#contact"
+      },
+      {
+        title: "Meglévő épület átalakítása",
+        subtitle: "Egyedi ajánlat alapján",
+        description: "Épület felmérése, megvalósíthatósági tanulmány és koncepcióterv",
+        ctaLabel: "Ajánlatot kérek",
+        ctaHref: "#contact"
+      }
+    ]}
+  />
+
+  <LeadForm
+    sectionLabel="Nézd meg, hogy mit kapsz!"
+    headline="Töltsd le egy valós minta tanulmányunkat"
+    description="Töltsd le egy valós (anonimizált) megvalósíthatósági és koncepcióterv-csomag teljes anyagát egy budapesti lakóingatlan-fejlesztési telekről. 14 oldal. Pontosan az a formátum, amit minden beadványra visszaküldünk."
+    namePlaceholder="Név"
+    emailPlaceholder="Email cím"
+    ctaLabel="Letöltés"
+    successMessage="Köszönjük! Hamarosan küldjük a tanulmányt."
+    errorMessage="Hiba történt. Kérjük, próbáld újra."
+  />
+
+  <About
+    sectionLabel="Rólunk"
+    headline="Szakértelem, pontosság"
+    description="A szolgáltatás megbízhatóságáért a Qvarta építésziroda felel. Egy budapesti székhelyű építész–generáltervező iroda vagyunk sok év tapasztalattal. Végigkísértünk lakó, közületi és egyéb projekteket a koncepcióalkotástól a megvalósulásig. Ezt az előfizetéses szolgáltatást azért hoztuk létre, mert újra és újra azt láttuk, hogy a fejlesztők a kezdeti szakaszban időt és pénzt veszítenek — és tudjuk, hogy ezen tudunk segíteni."
+  />
+
+  <FAQ
+    sectionLabel="GYIK"
+    headline="Gyakran ismételt kérdések"
+    items={[
+      {
+        question: "Milyen adatokat kell megadnom a kezdéshez?",
+        answer: "Csak a címet vagy a helyrajzi számot, a tervezett funkciót, és az esetlegesen ismert korlátokat. Ha van földhivatali térképmásolat vagy geodéziai felmérés, az gyorsítja a folyamatot. A többit mi intézzük."
+      },
+      {
+        question: "Engedélyezési terveket vagy kiviteli terveket is készítetek?",
+        answer: "Ez a szolgáltatásunk kizárólag a tervezés előtti tanácsadási szakaszt fedi le. Azonban igény szerint szívesen közreműködünk a további tervfázisokban is megegyezés alapján."
+      },
+      {
+        question: "Mi van, ha a telkem Budapesten kívül van?",
+        answer: "Az egész magyar piacot lefedjük."
+      },
+      {
+        question: "Bármikor lemondhatom?",
+        answer: "Igen. Havi gördülő szerződés. Lemondás vagy szüneteltetés 7 napos felmondási idővel, indoklás nélkül."
+      },
+      {
+        question: "Foglalkozunk-e meglévő épületekkel is?",
+        answer: "Igen. Azonban ebben az esetben neked kell biztosítani valamilyen részletezettségű felmérési terveket."
+      }
+    ]}
+  />
+
+  <ClosingCTA
+    headline="A következő sikeres fejlesztésed itt kezdődik!"
+    description="Foglalj egy ingyenes 30 perces bemutatót — megmutatjuk, hogyan működik a szolgáltatás egy valós példán keresztül és közben megválaszoljuk a kérdéseid. Elköteleződés nélkül."
+    ctaLabel="Foglalj 30 perces hívást"
+    ctaHref="#contact"
+  />
+</BaseLayout>

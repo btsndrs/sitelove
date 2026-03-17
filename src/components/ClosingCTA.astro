@@ -1,0 +1,33 @@
+---
+interface Props {
+  headline: string;
+  description: string;
+  ctaLabel: string;
+  ctaHref: string;
+}
+const { headline, description, ctaLabel, ctaHref } = Astro.props;
+---
+
+<section class="bg-brand py-20 md:py-28 relative overflow-hidden">
+  <!-- decorative accent -->
+  <div class="absolute bottom-0 right-0 w-64 h-64 bg-brand-accent/5 translate-x-1/2 translate-y-1/2 rounded-full blur-3xl pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-6 md:px-10 relative z-10">
+    <div class="max-w-2xl">
+      <h2 class="text-3xl md:text-5xl font-heading font-bold text-brand-light mb-6 leading-tight">{headline}</h2>
+      <p class="text-brand-mid/60 leading-relaxed mb-10 text-lg">{description}</p>
+      <a href={ctaHref} class="btn-primary">{ctaLabel}</a>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-brand border-t border-white/5 py-8 px-6 md:px-10">
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+    <img 
+      src="https://cdn.prod.website-files.com/6267babc3063512be3e7eb0d/6267bd9732d7d7a2c31bbe11_Qvarta%20logo.svg" 
+      alt="Qvarta" 
+      class="h-6 w-auto opacity-50"
+    />
+    <p class="text-brand-mid/30 text-xs">© {new Date().getFullYear()} Qvarta. All rights reserved.</p>
+  </div>
+</footer>
