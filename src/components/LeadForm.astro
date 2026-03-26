@@ -21,9 +21,10 @@ const { sectionLabel, headline, description, namePlaceholder, emailPlaceholder, 
         <h2 class="text-3xl md:text-4xl font-heading font-bold text-brand mb-5 max-w-lg">{headline}</h2>
         <p class="text-brand/60 leading-relaxed mb-10 max-w-md">{description}</p>
 
-        <form 
+        <form
           name="sample-download"
           method="POST"
+          action="/koszonjuk"
           data-netlify="true"
           netlify-honeypot="bot-field"
           class="space-y-4 max-w-md"
@@ -49,12 +50,6 @@ const { sectionLabel, headline, description, namePlaceholder, emailPlaceholder, 
           <button type="submit" class="btn-primary w-full">{ctaLabel}</button>
         </form>
 
-        <!-- Success / error messages (shown via JS) -->
-        <div id="form-success" class="hidden mt-6 p-4 bg-green-50 border border-green-200 text-green-800 text-sm">
-          {successMessage}
-          <a href="/files/Megval_tanulmany-minta.pdf" download class="block mt-2 underline font-semibold">Letöltés manuálisan →</a>
-        </div>
-        <div id="form-error" class="hidden mt-6 p-4 bg-red-50 border border-red-200 text-red-800 text-sm">{errorMessage}</div>
       </div>
 
       <!-- Right: mockup image -->
@@ -70,38 +65,3 @@ const { sectionLabel, headline, description, namePlaceholder, emailPlaceholder, 
   </div>
 </section>
 
-<script>
-  const form = document.getElementById('download-form') as HTMLFormElement;
-  if (form) {
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const formData = new FormData(form);
-      const body = new URLSearchParams();
-      for (const [key, value] of formData.entries()) {
-        body.append(key, value.toString());
-      }
-      try {
-        const res = await fetch('/', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: body.toString(),
-        });
-        if (res.ok) {
-          form.style.display = 'none';
-          document.getElementById('form-success')?.classList.remove('hidden');
-          // Trigger automatic download
-          const a = document.createElement('a');
-          a.href = '/files/Megval_tanulmany-minta.pdf';
-          a.download = 'Megvalosithatosagi-tanulmany-minta.pdf';
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
-        } else {
-          document.getElementById('form-error')?.classList.remove('hidden');
-        }
-      } catch {
-        document.getElementById('form-error')?.classList.remove('hidden');
-      }
-    });
-  }
-</script>
