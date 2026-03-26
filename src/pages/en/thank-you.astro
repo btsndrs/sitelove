@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Thank you! | QPlot by Qvarta" lang="en">
+  <main class="min-h-screen bg-brand-light flex items-center justify-center px-6">
+    <div class="text-center max-w-md">
+      <h1 class="font-heading text-3xl font-bold text-brand mb-4">Thank you!</h1>
+      <p class="text-brand/70 mb-8">We've received your details. Your sample study download should start automatically — if not, click the button below.</p>
+      <a
+        href="/files/Megval_tanulmany-minta.pdf"
+        download="Feasibility-study-sample.pdf"
+        class="btn-primary inline-block mb-6"
+      >
+        Download
+      </a>
+      <br />
+      <a href="/en" class="text-sm text-brand/50 hover:text-brand underline">← Back to home</a>
+    </div>
+  </main>
+</BaseLayout>
+
+<script>
+  // Auto-trigger download on page load
+  const a = document.createElement('a');
+  a.href = '/files/Megval_tanulmany-minta.pdf';
+  a.download = 'Feasibility-study-sample.pdf';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+</script>

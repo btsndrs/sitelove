@@ -8,8 +8,9 @@ interface Props {
   ctaLabel: string;
   successMessage: string;
   errorMessage: string;
+  successHref?: string;
 }
-const { sectionLabel, headline, description, namePlaceholder, emailPlaceholder, ctaLabel, successMessage, errorMessage } = Astro.props;
+const { sectionLabel, headline, description, namePlaceholder, emailPlaceholder, ctaLabel, successMessage, errorMessage, successHref = '/koszonjuk' } = Astro.props;
 ---
 
 <section class="bg-brand-light py-20 md:py-28" id="download">
@@ -24,7 +25,7 @@ const { sectionLabel, headline, description, namePlaceholder, emailPlaceholder, 
         <form
           name="sample-download"
           method="POST"
-          action="/koszonjuk"
+          action={successHref}
           data-netlify="true"
           netlify-honeypot="bot-field"
           class="space-y-4 max-w-md"
