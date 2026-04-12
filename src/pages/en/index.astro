@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Hero from '../../components/Hero.astro';
-import PainPoints from '../../components/PainPoints.astro';
+import UseCases from '../../components/UseCases.astro';
 import HowItWorks from '../../components/HowItWorks.astro';
 import Services from '../../components/Services.astro';
 import Pricing from '../../components/Pricing.astro';
@@ -14,33 +14,41 @@ import ClosingCTA from '../../components/ClosingCTA.astro';
 <BaseLayout title="Sitelove — Qvarta" lang="en">
   <Hero
     headline="Find out how a plot can be developed —<br/><em class='not-italic text-brand-accent'>before you commit</em>"
-    subheadline="Feasibility studies and concept designs for real estate developers. Predictable monthly fee. 10 business day delivery. No long-term contracts."
+    subheadline="Feasibility studies and concept designs for real estate developers, sellers and real estate agents. Predictable monthly fee. 10 business day delivery. No long-term contracts."
     ctaPrimary="Book a 30-minute call"
     ctaSecondary="Download a sample study"
     ctaPrimaryHref="https://calendly.com/ab-qvarta/30min"
     ctaSecondaryHref="#download"
   />
 
-  <PainPoints
-    intro="Most projects stall on a spreadsheet. Yours doesn't have to."
-    points={[
+  <UseCases
+    tabs={[
       {
-        icon: "",
-        title: "Too expensive",
-        description: "Project-based pricing means you pay for things you never end up using."
+        label: "For Developers",
+        points: [
+          "Analysis of plots and buildings to support acquisition processes",
+          "A reliable partner to help avoid risks",
+          "Numbers and layouts that move your development process forward",
+          "Clear answers and layouts"
+        ]
       },
       {
-        icon: "",
-        title: "Too vague",
-        description: "You need numbers and layouts that move things forward — not ambiguous recommendations."
+        label: "For Sellers",
+        points: [
+          "Show buyers the potential in your property",
+          "Sell your plot or building with confidence to real estate developers",
+          "Sell your plot or building up to 25% faster with a development plan in hand"
+        ]
       },
       {
-        icon: "",
-        title: "Too slow",
-        description: "The full design process takes too long. In the meantime, good opportunities can slip away if you can't react quickly."
+        label: "For Agents",
+        points: [
+          "Your clients can sell their properties 25% faster with a development plan",
+          "Become the expert on the development potential of the properties you list",
+          "Reduce the risk of deals falling through due to unforeseen regulations"
+        ]
       }
     ]}
-    transition="There is a better way to manage the property acquisition process."
   />
 
   <HowItWorks
