@@ -14,10 +14,10 @@ const { sectionLabel, tabs } = Astro.props;
   <div class="max-w-7xl mx-auto px-6 md:px-10">
     {sectionLabel && <span class="section-label">{sectionLabel}</span>}
 
-    <div class="flex gap-0 mb-10 border-b border-white/10" id="usecase-tabs">
+    <div class="flex justify-center gap-0 mb-10 border-b border-white/10" id="usecase-tabs">
       {tabs.map((tab, i) => (
         <button
-          class={`usecase-tab font-heading font-semibold text-sm tracking-wide uppercase px-6 py-3 transition-all duration-200${i === 0 ? ' active-tab' : ''}`}
+          class={`usecase-tab font-heading font-semibold text-sm tracking-wide uppercase px-12 py-3 transition-all duration-200${i === 0 ? ' active-tab' : ''}`}
           data-target={`usecase-panel-${i}`}
         >
           {tab.label}
@@ -27,7 +27,7 @@ const { sectionLabel, tabs } = Astro.props;
 
     {tabs.map((tab, i) => (
       <div id={`usecase-panel-${i}`} class={`usecase-panel${i !== 0 ? ' hidden' : ''}`}>
-        <ul class="space-y-6 max-w-2xl">
+        <ul class="space-y-6 max-w-2xl mx-auto">
           {tab.points.map((point) => (
             <li class="flex items-start gap-4">
               <span class="mt-1 text-brand-accent font-bold text-lg leading-none">—</span>
