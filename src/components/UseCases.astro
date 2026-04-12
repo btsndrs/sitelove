@@ -1,0 +1,74 @@
+---
+interface Tab {
+  label: string;
+  points: string[];
+}
+interface Props {
+  sectionLabel?: string;
+  tabs: Tab[];
+}
+const { sectionLabel, tabs } = Astro.props;
+---
+
+<section class="bg-brand py-20 md:py-28">
+  <div class="max-w-7xl mx-auto px-6 md:px-10">
+    {sectionLabel && <span class="section-label">{sectionLabel}</span>}
+
+    <div class="flex gap-0 mb-10 border-b border-white/10" id="usecase-tabs">
+      {tabs.map((tab, i) => (
+        <button
+          class={`usecase-tab font-heading font-semibold text-sm tracking-wide uppercase px-6 py-3 transition-all duration-200${i === 0 ? ' active-tab' : ''}`}
+          data-target={`usecase-panel-${i}`}
+        >
+          {tab.label}
+        </button>
+      ))}
+    </div>
+
+    {tabs.map((tab, i) => (
+      <div id={`usecase-panel-${i}`} class={`usecase-panel${i !== 0 ? ' hidden' : ''}`}>
+        <ul class="space-y-6 max-w-2xl">
+          {tab.points.map((point) => (
+            <li class="flex items-start gap-4">
+              <span class="mt-1 text-brand-accent font-bold text-lg leading-none">—</span>
+              <span class="text-brand-light text-xl md:text-2xl font-heading font-semibold leading-snug">{point}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .usecase-tab {
+    color: rgba(255, 255, 255, 0.4);
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+  }
+  .usecase-tab:hover {
+    color: rgba(255, 255, 255, 0.7);
+  }
+  .usecase-tab.active-tab {
+    color: #ffffff;
+    border-bottom-color: #c8a96e;
+  }
+  .usecase-panel.hidden {
+    display: none;
+  }
+</style>
+
+<script>
+  const tabs = document.querySelectorAll<HTMLButtonElement>('.usecase-tab');
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      tabs.forEach((t) => t.classList.remove('active-tab'));
+      tab.classList.add('active-tab');
+      document.querySelectorAll<HTMLElement>('.usecase-panel').forEach((panel) => {
+        panel.classList.add('hidden');
+      });
+      const target = tab.dataset.target;
+      if (target) document.getElementById(target)?.classList.remove('hidden');
+    });
+  });
+</script>

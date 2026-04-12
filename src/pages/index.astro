@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
-import PainPoints from '../components/PainPoints.astro';
+import UseCases from '../components/UseCases.astro';
 import HowItWorks from '../components/HowItWorks.astro';
 import Services from '../components/Services.astro';
 import Pricing from '../components/Pricing.astro';
@@ -21,26 +21,34 @@ import ClosingCTA from '../components/ClosingCTA.astro';
     ctaSecondaryHref="#download"
   />
 
-  <PainPoints
-    intro="A legtöbb projekt táblázat formában ragad. A tiéd ne legyen ilyen!"
-    points={[
+  <UseCases
+    tabs={[
       {
-        icon: "",
-        title: "Túl drága",
-        description: "Projekt alapú díjazás azt jelenti, hogy olyanért is fizetsz, amit nem használsz fel."
+        label: "Fejlesztőknek",
+        points: [
+          "Telkek és épületek elemzése az akvizíciós folyamatok támogatására",
+          "Megbízható partner a kockázatok elkerüléséhez",
+          "Számok és elrendezések amelyek előrevisznek a fejlesztési folyamatban",
+          "Egyértelmű válaszok és elrendezések"
+        ]
       },
       {
-        icon: "",
-        title: "Nem egyértelmű",
-        description: "Számokra és elrendezésre van szükséged, amely előrevisz — nem homályos javaslatokra."
+        label: "Eladóknak",
+        points: [
+          "Mutassa be a vevőknek az ingatlanjában lévő potenciált!",
+          "Adja el telkét vagy épületét magabiztosan ingatlanfejlesztőknek.",
+          "Telkét vagy épületét akár 25%-al gyorsabban eladhatja egy fejlesztési terv birtokában"
+        ]
       },
       {
-        icon: "",
-        title: "Túl lassú",
-        description: "A teljes tervezési folyamat túl lassú. Ezalatt jó lehetőségektől eshetsz el, ha nem reagálsz gyorsan."
+        label: "Ingatlanosoknak",
+        points: [
+          "Ügyfelei 25%-kal gyorsabban tudják eladni ingatlanjaikat fejlesztési tervvel",
+          "Legyen szakértője az eladandó ingatlan fejlesztési potenciáljának!",
+          "Csökkentse az előre nem látható szabályozások miatti visszalépési kockázatot!"
+        ]
       }
     ]}
-    transition="Van egy jobb módja az ingatlan akvizíciós folyamat kezelésének."
   />
 
   <HowItWorks
