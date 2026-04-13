@@ -153,6 +153,24 @@ import ClosingCTA from '../../components/ClosingCTA.astro';
         ctaHref: "https://calendly.com/ab-qvarta/30min"
       }
     ]}
+    tab1Label="Subscription"
+    tab2Label="Custom order"
+    customCards={[
+      {
+        title: "New construction",
+        subtitle: "Based on a custom quote",
+        description: "Feasibility study and concept design",
+        ctaLabel: "Request a quote",
+        ctaHref: "mailto:office@qvarta.eu?subject=Tanulmany%20ajanlat"
+      },
+      {
+        title: "Renovation of an existing building",
+        subtitle: "Based on a custom quote",
+        description: "Building survey, feasibility study and concept design",
+        ctaLabel: "Request a quote",
+        ctaHref: "mailto:office@qvarta.eu?subject=Tanulmany%20ajanlat"
+      }
+    ]}
   />
 
   <LeadForm
@@ -205,5 +223,7 @@ import ClosingCTA from '../../components/ClosingCTA.astro';
     description="Book a free 30-minute demo — we'll walk you through the service with a real example and answer all your questions. No commitment."
     ctaLabel="Book a 30-minute call"
     ctaHref="https://calendly.com/ab-qvarta/30min"
+    contactLine="Or contact us directly:"
+    phoneLabel="phone"
   />
 </BaseLayout>

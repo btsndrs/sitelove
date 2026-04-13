@@ -4,8 +4,10 @@ interface Props {
   description: string;
   ctaLabel: string;
   ctaHref: string;
+  contactLine: string;
+  phoneLabel: string;
 }
-const { headline, description, ctaLabel, ctaHref } = Astro.props;
+const { headline, description, ctaLabel, ctaHref, contactLine, phoneLabel } = Astro.props;
 ---
 
 <section class="bg-brand py-20 md:py-28 relative overflow-hidden">
@@ -17,6 +19,11 @@ const { headline, description, ctaLabel, ctaHref } = Astro.props;
       <h2 class="text-3xl md:text-5xl font-heading font-bold text-brand-light mb-6 leading-tight">{headline}</h2>
       <p class="text-brand-mid/60 leading-relaxed mb-10 text-lg">{description}</p>
       <a href={ctaHref} class="btn-primary">{ctaLabel}</a>
+      <div class="mt-10 text-brand-mid/50 text-sm leading-relaxed">
+        <p class="mb-2">{contactLine}</p>
+        <p>email: <a href="mailto:office@qvarta.eu" class="hover:text-brand-accent transition-colors">office@qvarta.eu</a></p>
+        <p>{phoneLabel}: <a href="tel:+36304446003" class="hover:text-brand-accent transition-colors">+36 30 444 6003</a></p>
+      </div>
     </div>
   </div>
 </section>
