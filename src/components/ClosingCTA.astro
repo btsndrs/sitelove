@@ -6,8 +6,10 @@ interface Props {
   ctaHref: string;
   contactLine: string;
   phoneLabel: string;
+  privacyLabel: string;
+  privacyHref: string;
 }
-const { headline, description, ctaLabel, ctaHref, contactLine, phoneLabel } = Astro.props;
+const { headline, description, ctaLabel, ctaHref, contactLine, phoneLabel, privacyLabel, privacyHref } = Astro.props;
 ---
 
 <section class="bg-brand py-20 md:py-28 relative overflow-hidden">
@@ -36,5 +38,6 @@ const { headline, description, ctaLabel, ctaHref, contactLine, phoneLabel } = As
       class="h-6 w-auto opacity-50"
     />
     <p class="text-brand-mid/30 text-xs">© {new Date().getFullYear()} Qvarta. All rights reserved.</p>
+    <a href={privacyHref} class="text-brand-mid/30 text-xs hover:text-brand-accent transition-colors">{privacyLabel}</a>
   </div>
 </footer>
