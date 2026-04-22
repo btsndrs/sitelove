@@ -1,15 +1,20 @@
 ---
+interface Stat {
+  value: string;
+  label: string;
+}
 interface Props {
   sectionLabel: string;
   headline: string;
   description: string;
+  stats: Stat[];
 }
-const { sectionLabel, headline, description } = Astro.props;
+const { sectionLabel, headline, description, stats } = Astro.props;
 ---
 
 <section class="bg-brand-mid py-20 md:py-28">
   <div class="max-w-7xl mx-auto px-6 md:px-10">
-    <div class="grid md:grid-cols-2 gap-12 items-center">
+    <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
       <div>
         <span class="section-label">{sectionLabel}</span>
         <h2 class="text-3xl md:text-4xl font-heading font-bold text-brand mb-6 leading-tight">{headline}</h2>
@@ -18,5 +23,56 @@ const { sectionLabel, headline, description } = Astro.props;
         <p class="text-brand/60 leading-relaxed text-base">{description}</p>
       </div>
     </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-0 border-t border-brand/10">
+      {stats.map((stat, i) => (
+        <div class={`py-10 px-8 ${i < stats.length - 1 ? 'md:border-r border-brand/10' : ''}`}>
+          <div
+            class="font-heading font-bold text-4xl md:text-5xl text-brand mb-3 stat-number"
+            data-target={stat.value}
+          >
+            {stat.value}
+          </div>
+          <p class="text-brand/50 text-sm leading-relaxed max-w-[180px]">{stat.label}</p>
+        </div>
+      ))}
+    </div>
   </div>
 </section>
+
+<script>
+  const observerOptions = { threshold: 0.3 };
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target as HTMLElement;
+      const raw = el.dataset.target ?? '';
+
+      // Extract numeric part and suffix (e.g. "29db" → 29, "db" | "662 000 m2" → 662000, " m2")
+      const match = raw.replace(/\s/g, '').match(/^(\d+)(.*)$/);
+      if (!match) return;
+
+      const end = parseInt(match[1]);
+      const suffix = raw.replace(/^\d[\d\s]*/, ''); // preserve original suffix incl spaces
+      const duration = 1800;
+      const start = performance.now();
+
+      const tick = (now: number) => {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const current = Math.round(eased * end);
+        // Format with spaces for thousands
+        const formatted = current >= 1000
+          ? current.toLocaleString('hu-HU').replace(/,/g, ' ')
+          : current.toString();
+        el.textContent = formatted + suffix;
+        if (progress < 1) requestAnimationFrame(tick);
+      };
+
+      requestAnimationFrame(tick);
+      observer.unobserve(el);
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.stat-number').forEach(el => observer.observe(el));
+</script>
